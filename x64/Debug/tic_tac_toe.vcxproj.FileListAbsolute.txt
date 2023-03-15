@@ -1,0 +1,3 @@
+C:\Users\Артем\Desktop\C++\tic_tac_toe\x64\Debug\tic_tac_toe.exe
+C:\Users\Артем\Desktop\C++\ООП\tic_tac_toe\x64\Debug\tic_tac_toe.exe
+C:\Users\Артем\Desktop\C++\ООП\tic_tac_toe5\x64\Debug\tic_tac_toe.exe
