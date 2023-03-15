@@ -1,7 +1,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
-#include "Button.h"
+#include "Drawer.h"
 
 using namespace sf;
 using namespace std;
@@ -16,6 +16,7 @@ int main()
 {
     RenderWindow window(VideoMode(1000, 1000), "Tic Tac Toe 5", Style::Close);
 
+    Drawer drawer;
 
     while (window.isOpen())
     {
@@ -28,6 +29,7 @@ int main()
 
         Button a;
 
+        drawer.Draw(window);
         window.display();
     }
 

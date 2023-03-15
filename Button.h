@@ -25,6 +25,7 @@ namespace Visual
     public:
         Button();
         Button(int Ix, int Iy, int Ilength, int Iwidth, array<int, 2> Iarray);
+        Button(int Ix, int Iy, int Ilength, int Iwidth, Coordinate Icoordinate);
 
         ~Button();
 
