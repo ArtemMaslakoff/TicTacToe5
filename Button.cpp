@@ -1,5 +1,9 @@
 #include "Button.h"
 
+using namespace Logic;
+using namespace std;
+using namespace sf;
+
 namespace Visual
 {
     Button::Button() : x(0), y(0), length(0), width(0), coordinate(Coordinate()) {};
@@ -50,10 +54,10 @@ namespace Visual
         return width;
     };
 
-    void Button::Draw(RenderWindow& window)
+    void Button::Draw(RenderWindow& window, string file)
     {
         Texture texture;
-        texture.loadFromFile("Cage.png");
+        texture.loadFromFile(file);
         Sprite sprite;
         sprite.setTexture(texture);
         sprite.setPosition(x * length,y * width);

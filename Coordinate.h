@@ -1,7 +1,12 @@
+#ifndef COORDINATE_H
+#define COORDINATE_H
+
+
+
 #include <iostream>
 #include <array>
 
-namespace N
+namespace Logic
 {
 	class Coordinate
 	{
@@ -24,7 +29,11 @@ namespace N
 		int GetY();
 
 		std::array<int, 2> ScalarProduct(std::array<int, 2>);
-		std::array<int, 2> ScalarProduct(Coordinate Icoordinate);
-		std::array<int, 2> RelativeCoordinates(Coordinate Icoordinate);
+		//std::array<int, 2> ScalarProduct(Logic::Coordinate Icoordinate);
+		//std::array<int, 2> RelativeCoordinates(Logic::Coordinate Icoordinate);
 	};
 }
+
+
+
+#endif /* COORDINATE_H */

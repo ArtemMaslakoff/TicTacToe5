@@ -2,7 +2,7 @@
 
 using namespace std;
 
-namespace N
+namespace Logic
 {
 	Coordinate::Coordinate() : x(0), y(0) {};
 	Coordinate::Coordinate(int Ix, int Iy) : x(Ix), y(Iy) {};
@@ -42,7 +42,7 @@ namespace N
 		return array<int, 2>{ x * Iarray[0], y* Iarray[1] };
 	};
 
-	array<int, 2> Coordinate::ScalarProduct(Coordinate Icoordinate)
+	/*array<int, 2> Coordinate::ScalarProduct(Coordinate Icoordinate)
 	{
 		return array<int, 2>{ x * Icoordinate.GetX(), y * Icoordinate.GetY() };
 	};
@@ -50,5 +50,5 @@ namespace N
 	array<int, 2> Coordinate::RelativeCoordinates(Coordinate Icoordinate)
 	{
 		return array<int, 2>{ x - Icoordinate.GetX(), y - Icoordinate.GetY() };
-	};
+	};*/
 }
