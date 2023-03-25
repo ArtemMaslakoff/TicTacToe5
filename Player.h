@@ -1,3 +1,7 @@
+#ifndef PLAYER_H
+#define PLAYER_H
+
+
 namespace Logic
 {
 	class Player
@@ -16,3 +20,7 @@ namespace Logic
 		void ChangeActive();
 	};
 }
+
+
+
+#endif /* PLAYER_H */

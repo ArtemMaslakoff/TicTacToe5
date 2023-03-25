@@ -16,14 +16,10 @@ namespace Logic
 	{
 		return cages;
 	};
-	/*vector<Cage> TicTacToe::GetCagesX()
+	Coordinate TicTacToe::GetLastXStep()
 	{
-
+		return lastXStep;
 	};
-	vector<Cage> TicTacToe::GetCagesO()
-	{
-
-	};*/
 
 	void TicTacToe::SwitchPlayer()
 	{
@@ -35,10 +31,12 @@ namespace Logic
 		if (playerX.GetActive())
 		{
 			cages.push_back(Cage(Coordinate(Ix, Iy), CageCondition(X)));
+			lastXStep = Coordinate(Ix, Iy);
 		}
 		if (playerO.GetActive())
 		{
 			cages.push_back(Cage(Coordinate(Ix, Iy), CageCondition(O)));
+			lastOStep = Coordinate(Ix, Iy);
 		}
 		SwitchPlayer();
 	};
@@ -72,6 +70,18 @@ namespace Logic
 			for (int j = 0; j < 40; j++)
 			{
 				result[i][j] = FindCage(i - Icoordinate.GetX(), j + Icoordinate.GetY());
+			}
+		}
+		return result;
+	};
+	array<array<CageCondition, 9>, 9> TicTacToe::GetMapL(Coordinate Icoordinate)
+	{
+		array<array<CageCondition, 9>, 9> result{};
+		for (int i = 0; i < 9; i++)
+		{
+			for (int j = 0; j < 9; j++)
+			{
+				result[i][j] = FindCage(Icoordinate.GetX() - 4 + i,Icoordinate.GetY() - 4 + j);
 			}
 		}
 		return result;

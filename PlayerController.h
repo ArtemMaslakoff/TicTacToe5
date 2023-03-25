@@ -2,6 +2,7 @@
 #include <iostream>
 #include "TicTacToe5.h"
 #include "Drawer.h"
+#include "AI.h"
 
 
 namespace Visual
@@ -14,6 +15,6 @@ namespace Visual
 
 		~PlayerController();
 
-		void Check(sf::RenderWindow& window, sf::Event& event, Logic::TicTacToe& tictactoe5, Visual::Drawer drawer);
+		void Check(sf::RenderWindow& window, sf::Event& event, Logic::TicTacToe& tictactoe5, Visual::Drawer drawer, Logic::AI &AI);
 	};
 }

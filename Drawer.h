@@ -15,13 +15,13 @@ namespace Visual
 		Logic::Coordinate coordinate;
 		std::array<std::array<Visual::Button, 40>, 40> localTable;
 	public:
-		Drawer();
+	    Drawer();
 
 		~Drawer();
 
 		Logic::Coordinate GetCoordinate();
 
-		void Draw(sf::RenderWindow& window, Logic::TicTacToe& tictactoe);
+		void Draw(sf::RenderWindow& window, Logic::TicTacToe& tictactoe, std::vector<Logic::Coordinate> squares);
 		void Check();
 	};
 }

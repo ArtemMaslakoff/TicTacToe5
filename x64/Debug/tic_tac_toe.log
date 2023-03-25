@@ -1,2 +1,5 @@
-﻿  Drawer.cpp
+﻿  AI.cpp
+  PlayerController.cpp
+  main.cpp
+  Создание кода...
   tic_tac_toe.vcxproj -> C:\Users\Артем\Documents\GitHub\TicTacToe5\x64\Debug\tic_tac_toe.exe

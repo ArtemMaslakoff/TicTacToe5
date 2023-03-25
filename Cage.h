@@ -1,3 +1,8 @@
+#ifndef CAGE_H
+#define CAGE_H
+
+
+
 #include "Coordinate.h"
 
 namespace Logic
@@ -5,8 +10,10 @@ namespace Logic
     enum CageCondition
     {
         X = -1,
-        FREE,
-        O
+        FREE = 0,
+        O = 1,
+        TR = 3,
+        SQ = 4
     };
 
     class Cage
@@ -26,4 +33,8 @@ namespace Logic
         Coordinate GetCoordinate();
         CageCondition GetCondition();
     };
-} 
+}
+
+
+
+#endif /* CAGE_H */

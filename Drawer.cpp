@@ -24,9 +24,16 @@ namespace Visual
 		return coordinate;
 	};
 
-	void Drawer::Draw(RenderWindow& window, TicTacToe& tictactoe)
+	void Drawer::Draw(RenderWindow& window, TicTacToe& tictactoe, vector<Logic::Coordinate> squares)
 	{
 		array<array<CageCondition, 40>, 40> localMap = tictactoe.GetMap(coordinate);
+		for (int i = 0; i < squares.size(); i++)
+		{
+			if ((squares[i].GetX() >= 0 + coordinate.GetX()) && (squares[i].GetX() < 40 + coordinate.GetX()) && (squares[i].GetY() >= 0 + coordinate.GetY()) && (squares[i].GetY() < 40 + coordinate.GetY()))
+			{
+				localMap[squares[i].GetX() - coordinate.GetX()][squares[i].GetY() - coordinate.GetY()] = SQ;
+			}
+		}
 		for (int i = 0; i < 40; i++)
 		{
 			for (int j = 0; j < 40; j++)
@@ -38,6 +45,14 @@ namespace Visual
 				else if (localMap[i][j] == O)
 				{
 					localTable[i][j].Draw(window, "CageO.png");
+				}
+				else if (localMap[i][j] == SQ)
+				{
+					localTable[i][j].Draw(window, "CageSQ.png");
+				}
+				else if (localMap[i][j] == TR)
+				{
+					localTable[i][j].Draw(window, "CageTR.png");
 				}
 				else
 				{
@@ -64,6 +79,5 @@ namespace Visual
 		{
 			coordinate.SetY(coordinate.GetY() + 1);
 		}
-		cout << coordinate.GetX() << "   " << coordinate.GetY() << endl;
 	}
 }

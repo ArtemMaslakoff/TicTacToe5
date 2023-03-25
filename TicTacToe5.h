@@ -15,6 +15,9 @@ namespace Logic
 	private:
 		std::vector<Cage> cages;
 
+		Logic::Coordinate lastXStep;
+		Logic::Coordinate lastOStep;
+
 		Player playerX;
 		Player playerO;
 	public:
@@ -23,14 +26,14 @@ namespace Logic
 		~TicTacToe();
 
 		std::vector<Cage> GetCages();
-		/*vector<Cage> GetCagesX();
-		vector<Cage> GetCagesO();*/
+		Logic::Coordinate GetLastXStep();
 
 		void SwitchPlayer();
 		void DoStep(int Ix, int Iy);
 		bool CheckCage(int Ix, int Iy);
 		CageCondition FindCage(int Ix, int Iy);
 		std::array<std::array<CageCondition, 40>, 40> GetMap(Coordinate Icoordinate);
+		std::array<std::array<CageCondition, 9>, 9> GetMapL(Coordinate Icoordinate);
 	};
 }
 

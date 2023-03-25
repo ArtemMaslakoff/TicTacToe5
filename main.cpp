@@ -4,6 +4,7 @@
 #include "Drawer.h"
 #include "PlayerController.h"
 #include "TicTacToe5.h"
+#include "AI.h"
 
 using namespace sf;
 using namespace std;
@@ -17,6 +18,8 @@ int main()
 
     TicTacToe game;
 
+    AI ai;
+
     PlayerController playerController;
     Drawer drawer;
 
@@ -29,11 +32,9 @@ int main()
                 window.close();
         }
 
-        Button a;
-
-        playerController.Check(window, event, game, drawer);
+        playerController.Check(window, event, game, drawer, ai);
         drawer.Check();
-        drawer.Draw(window, game);
+        drawer.Draw(window, game, ai.GetSquares());
         window.display();
     }
 
