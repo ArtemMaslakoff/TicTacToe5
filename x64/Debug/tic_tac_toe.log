@@ -1,5 +1,3 @@
 ﻿  AI.cpp
-  PlayerController.cpp
-  main.cpp
-  Создание кода...
-  tic_tac_toe.vcxproj -> C:\Users\Артем\Documents\GitHub\TicTacToe5\x64\Debug\tic_tac_toe.exe
+C:\Users\masla\OneDrive\Документы\GitHub\TicTacToe5\AI.cpp(54,13): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+  tic_tac_toe.vcxproj -> C:\Users\masla\OneDrive\Документы\GitHub\TicTacToe5\x64\Debug\tic_tac_toe.exe

@@ -47,17 +47,21 @@ namespace Logic
 	{
 		//game.DoStep(game.GetLastXStep().GetX() + 1, game.GetLastXStep().GetY() + 1);
 		array<array<CageCondition, 9>, 9> localMap = game.GetMapL(game.GetLastXStep());
-		for (int i = 0; i < 9; i++)
-		{
-			for (int j = 0; j < 9; j++)
-			{
-				cout << localMap[j][i];
-			}
-			cout << endl;
-		}
-		cout << endl;
 		Coordinate coordinate = game.GetLastXStep();
 		Check(localMap, coordinate);
+		
+		int num = 0;
+		srand(time(NULL));
+		if (squares.size() == 0)
+		{
+			game.DoStep(game.GetLastXStep().GetX() + 1, game.GetLastXStep().GetY());
+		}
+		else
+		{
+			num = rand() % squares.size();
+			game.DoStep(squares[num].GetX(), squares[num].GetY());
+			DeleteSquare(squares[num]);
+		}
 	};
 	void AI::CheckLine(array<CageCondition, 9> &line, Coordinate& coordinate, int x, int y)
 	{
