@@ -21,7 +21,7 @@ namespace Visual
 
 		Logic::Coordinate GetCoordinate();
 
-		void Draw(sf::RenderWindow& window, Logic::TicTacToe& tictactoe, std::vector<Logic::Coordinate> squares);
+		void Draw(sf::RenderWindow& window, Logic::TicTacToe& tictactoe, std::vector<Logic::Coordinate> squares, std::vector<Logic::Coordinate> triangles);
 		void Check();
 	};
 }

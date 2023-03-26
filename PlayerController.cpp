@@ -16,6 +16,8 @@ namespace Visual
 			{
 				tictactoe5.DoStep(Mouse::getPosition(window).x / 25 - drawer.GetCoordinate().GetX(), Mouse::getPosition(window).y / 25 + drawer.GetCoordinate().GetY());
 				AI.DeleteSquare(tictactoe5.GetLastXStep());
+				AI.DeleteTriangle(tictactoe5.GetLastXStep());
+
 				AI.DoStep(tictactoe5);
 			}
 		}

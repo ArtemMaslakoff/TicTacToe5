@@ -43,6 +43,38 @@ namespace Logic
 		}
 	};
 
+	void AI::AddTriangle(Logic::Coordinate coordinate)
+	{
+		bool ind = true;
+		for (int i = 0; i < triangles.size(); i++)
+		{
+			if (triangles[i].GetX() == coordinate.GetX() && triangles[i].GetY() == coordinate.GetY())
+			{
+				ind = false;
+			}
+		}
+		if (ind)
+		{
+			triangles.push_back(Coordinate(coordinate.GetX(), coordinate.GetY()));
+		}
+	};
+	void AI::DeleteTriangle(Logic::Coordinate coordinate)
+	{
+		for (int i = 0; i < triangles.size(); i++)
+		{
+			if (triangles[i].GetX() == coordinate.GetX() && triangles[i].GetY() == coordinate.GetY())
+			{
+				triangles.erase(triangles.begin() + i);
+			}
+		}
+	};
+
+	void AI::SQtoTR(Logic::Coordinate coordinate)
+	{
+		DeleteSquare(coordinate);
+		AddTriangle(coordinate);
+	};
+
 	Coordinate AI::FindFree(Logic::TicTacToe& game)
 	{
 		Coordinate result;
@@ -68,31 +100,29 @@ namespace Logic
 		
 		int num = 0;
 		srand(time(NULL));
-		if (squares.size() == 0)
+		if (rhombs.size() != 0)
 		{
-			game.DoStep(FindFree(game).GetX(), FindFree(game).GetY());
-			/*int x = rand() % 3 - 1;
-			int y = rand() % 3 - 1;
-			bool b = true;
-			while(b)
-			{
-				if (localMap[x][y] == FREE)
-				{
-					game.DoStep(game.GetLastXStep().GetX() + x, game.GetLastXStep().GetY() + y);
-					b = false;
-				}
-				else
-				{
-					x = rand() % 3 - 1;
-					y = rand() % 3 - 1;
-				}
-			}*/
+
 		}
-		else
+		else if (squares.size() != 0)
 		{
 			num = rand() % squares.size();
 			game.DoStep(squares[num].GetX(), squares[num].GetY());
 			DeleteSquare(squares[num]);
+			for (int i = 0; i < squares.size(); i++)
+			{
+				SQtoTR(squares[i]);
+			}
+		}
+		else if (triangles.size() != 0)
+		{
+			num = rand() % triangles.size();
+			game.DoStep(triangles[num].GetX(), triangles[num].GetY());
+			DeleteTriangle(triangles[num]);
+		}
+		else
+		{
+			game.DoStep(FindFree(game).GetX(), FindFree(game).GetY());
 		}
 	};
 	void AI::CheckLine(array<CageCondition, 9> &line, Coordinate& coordinate, int x, int y)
@@ -172,21 +202,38 @@ namespace Logic
 	};
 	void AI::CheckUnic(Logic::Coordinate& coordinate, array<array<CageCondition, 9>, 9>& localMap)
 	{
-		if (localMap[4][4] == X && localMap[6][6] == X && localMap[6][4] == X && localMap[4][6] == X)
+		if (localMap[4][4] == X && localMap[6][6] == X && localMap[6][4] == X && localMap[4][6] == X && localMap[5][5] == FREE)
 		{
 			AddSquare(Coordinate(coordinate.GetX() + 1, coordinate.GetY() + 1));
 		}
-		if (localMap[4][4] == X && localMap[2][2] == X && localMap[2][4] == X && localMap[4][2] == X)
+		if (localMap[4][4] == X && localMap[2][2] == X && localMap[2][4] == X && localMap[4][2] == X && localMap[3][3] == FREE)
 		{
 			AddSquare(Coordinate(coordinate.GetX() - 1, coordinate.GetY() - 1));
 		}
-		if (localMap[4][4] == X && localMap[6][2] == X && localMap[6][4] == X && localMap[4][2] == X)
+		if (localMap[4][4] == X && localMap[6][2] == X && localMap[6][4] == X && localMap[4][2] == X && localMap[5][3] == FREE)
 		{
 			AddSquare(Coordinate(coordinate.GetX() + 1, coordinate.GetY() - 1));
 		}
-		if (localMap[4][4] == X && localMap[2][6] == X && localMap[2][4] == X && localMap[4][6] == X)
+		if (localMap[4][4] == X && localMap[2][6] == X && localMap[2][4] == X && localMap[4][6] == X && localMap[3][5] == FREE)
 		{
 			AddSquare(Coordinate(coordinate.GetX() - 1, coordinate.GetY() + 1));
+		}
+
+		if (localMap[3][3] == X && localMap[4][2] == X && localMap[5][3] == X && localMap[4][4] == X && localMap[4][3] == FREE)
+		{
+			AddSquare(Coordinate(coordinate.GetX(), coordinate.GetY() - 1));
+		}
+		if (localMap[3][5] == X && localMap[4][6] == X && localMap[5][5] == X && localMap[4][4] == X && localMap[4][5] == FREE)
+		{
+			AddSquare(Coordinate(coordinate.GetX(), coordinate.GetY() + 1));
+		}
+		if (localMap[5][5] == X && localMap[6][4] == X && localMap[5][3] == X && localMap[4][4] == X && localMap[5][4] == FREE)
+		{
+			AddSquare(Coordinate(coordinate.GetX() + 1, coordinate.GetY()));
+		}
+		if (localMap[3][3] == X && localMap[2][4] == X && localMap[3][5] == X && localMap[4][4] == X && localMap[3][4] == FREE)
+		{
+			AddSquare(Coordinate(coordinate.GetX() - 1, coordinate.GetY()));
 		}
 	};
 	void AI::Check(array<array<CageCondition, 9>, 9> &localMap, Coordinate &coordinate)

@@ -14,8 +14,9 @@ namespace Logic
 	class AI
 	{
 	private:
-		std::vector<Logic::Coordinate> triangles;
+		std::vector<Logic::Coordinate> rhombs;
 		std::vector<Logic::Coordinate> squares;
+		std::vector<Logic::Coordinate> triangles;
 	public:
 		AI();
 
@@ -26,6 +27,11 @@ namespace Logic
 
 		void AddSquare(Logic::Coordinate coordinate);
 		void DeleteSquare(Logic::Coordinate coordinate);
+
+		void AddTriangle(Logic::Coordinate coordinate);
+		void DeleteTriangle(Logic::Coordinate coordinate);
+
+		void SQtoTR(Logic::Coordinate coordinate);
 
 		Logic::Coordinate FindFree(Logic::TicTacToe& game);
 

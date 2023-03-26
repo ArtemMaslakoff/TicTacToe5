@@ -13,7 +13,8 @@ namespace Logic
         FREE = 0,
         O = 1,
         TR = 3,
-        SQ = 4
+        SQ = 4,
+        RB = 5
     };
 
     class Cage
