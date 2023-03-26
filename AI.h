@@ -27,8 +27,12 @@ namespace Logic
 		void AddSquare(Logic::Coordinate coordinate);
 		void DeleteSquare(Logic::Coordinate coordinate);
 
+		Logic::Coordinate FindFree(Logic::TicTacToe& game);
+
 		void DoStep(Logic::TicTacToe& game);
 		void CheckLine(std::array<Logic::CageCondition, 9>& line, Logic::Coordinate& coordinate, int x, int y);
+		void CheckAngle(Logic::Coordinate& coordinate, std::array<std::array<Logic::CageCondition, 9>, 9>& localMap);
+		void CheckUnic(Logic::Coordinate& coordinate, std::array<std::array<Logic::CageCondition, 9>, 9>& localMap);
 		void Check(std::array<std::array<Logic::CageCondition, 9>, 9> &localMap, Coordinate& coordinate);
 	};
 }

@@ -43,6 +43,22 @@ namespace Logic
 		}
 	};
 
+	Coordinate AI::FindFree(Logic::TicTacToe& game)
+	{
+		Coordinate result;
+		for (int i = 0; i < game.GetCages().size(); i++)
+		{
+			result = game.GetCages()[i].GetCoordinate();
+			if (game.FindCage(result.GetX() + 1, result.GetY()) == FREE)
+			{
+				result.SetX(result.GetX() + 1);
+				result.SetY(result.GetY());
+				return result;
+			}
+		}
+		return result;
+	};
+
 	void AI::DoStep(Logic::TicTacToe& game)
 	{
 		//game.DoStep(game.GetLastXStep().GetX() + 1, game.GetLastXStep().GetY() + 1);
@@ -54,7 +70,23 @@ namespace Logic
 		srand(time(NULL));
 		if (squares.size() == 0)
 		{
-			game.DoStep(game.GetLastXStep().GetX() + 1, game.GetLastXStep().GetY());
+			game.DoStep(FindFree(game).GetX(), FindFree(game).GetY());
+			/*int x = rand() % 3 - 1;
+			int y = rand() % 3 - 1;
+			bool b = true;
+			while(b)
+			{
+				if (localMap[x][y] == FREE)
+				{
+					game.DoStep(game.GetLastXStep().GetX() + x, game.GetLastXStep().GetY() + y);
+					b = false;
+				}
+				else
+				{
+					x = rand() % 3 - 1;
+					y = rand() % 3 - 1;
+				}
+			}*/
 		}
 		else
 		{
@@ -75,30 +107,51 @@ namespace Logic
 			AddSquare(Coordinate(coordinate.GetX() + (-2 * x), coordinate.GetY() + (-2 * y)));
 		}
 
-		//if (line[2] == X && line[3] == X && line[1] == FREE) //???
-		//{
-		//	squares.push_back(Coordinate(coordinate.GetX() - 3, coordinate.GetY()));
-		//}
+		if (line[2] == X && line[3] == X)
+		{
+			if (line[1] == FREE)
+			{
+				AddSquare(Coordinate(coordinate.GetX() + (-3 * x), coordinate.GetY() + (-3 * y)));
+			}
+			if (line[5] == FREE)
+			{
+				AddSquare(Coordinate(coordinate.GetX() + (+1 * x), coordinate.GetY() + (+1 * y)));
+			}
+		}
 
 		if (line[2] == X && line[5] == X && line[3] == FREE)
 		{
 			AddSquare(Coordinate(coordinate.GetX() + (-1 * x), coordinate.GetY() + (-1 * y)));
 		}
 
-		//if (line[1] == X && line[2] == X && line[3] == FREE) //???
-		//{
-		//	squares.push_back(Coordinate(coordinate.GetX() - 1, coordinate.GetY()));
-		//}
+		if (line[3] == X && line[5] == X)
+		{
+			if (line[2] == FREE)
+			{
+				AddSquare(Coordinate(coordinate.GetX() + (-2 * x), coordinate.GetY() + (-2 * y)));
+			}
+			if (line[6] == FREE)
+			{
+				AddSquare(Coordinate(coordinate.GetX() + (+2 * x), coordinate.GetY() + (+2  * y)));
+			}
+		}
 
 		if (line[3] == X && line[6] == X && line[5] == FREE)
 		{
 			AddSquare(Coordinate(coordinate.GetX() + (1 * x), coordinate.GetY() + (1 * y)));
 		}
 
-		//if (line[5] == X && line[6] == X && line[3] == FREE) //???
-		//{
-		//	squares.push_back(Coordinate(coordinate.GetX() - 1, coordinate.GetY()));
-		//}
+		if (line[5] == X && line[6] == X)
+		{
+			if (line[3] == FREE)
+			{
+				AddSquare(Coordinate(coordinate.GetX() + (-1 * x), coordinate.GetY() + (-1 * y)));
+			}
+			if (line[7] == FREE)
+			{
+				AddSquare(Coordinate(coordinate.GetX() + (+3 * x), coordinate.GetY() + (+3 * y)));
+			}
+		}
 
 		if (line[5] == X && line[7] == X && line[6] == FREE)
 		{
@@ -110,6 +163,32 @@ namespace Logic
 			AddSquare(Coordinate(coordinate.GetX() + (1 * x), coordinate.GetY() + (1 * y)));
 		}
 	}
+	void AI::CheckAngle(Logic::Coordinate& coordinate, array<array<CageCondition, 9>, 9>& localMap)
+	{
+		/*if ()
+		{
+
+		}*/
+	};
+	void AI::CheckUnic(Logic::Coordinate& coordinate, array<array<CageCondition, 9>, 9>& localMap)
+	{
+		if (localMap[4][4] == X && localMap[6][6] == X && localMap[6][4] == X && localMap[4][6] == X)
+		{
+			AddSquare(Coordinate(coordinate.GetX() + 1, coordinate.GetY() + 1));
+		}
+		if (localMap[4][4] == X && localMap[2][2] == X && localMap[2][4] == X && localMap[4][2] == X)
+		{
+			AddSquare(Coordinate(coordinate.GetX() - 1, coordinate.GetY() - 1));
+		}
+		if (localMap[4][4] == X && localMap[6][2] == X && localMap[6][4] == X && localMap[4][2] == X)
+		{
+			AddSquare(Coordinate(coordinate.GetX() + 1, coordinate.GetY() - 1));
+		}
+		if (localMap[4][4] == X && localMap[2][6] == X && localMap[2][4] == X && localMap[4][6] == X)
+		{
+			AddSquare(Coordinate(coordinate.GetX() - 1, coordinate.GetY() + 1));
+		}
+	};
 	void AI::Check(array<array<CageCondition, 9>, 9> &localMap, Coordinate &coordinate)
 	{ 
 		// HORIZONTAL
@@ -124,8 +203,9 @@ namespace Logic
 		// NOTMAINDIAGONAL
 		line = { localMap[8][0],localMap[7][1],localMap[6][2],localMap[5][3],localMap[4][4],localMap[3][5],localMap[2][6],localMap[1][7],localMap[0][8] };
 		CheckLine(line, coordinate, -1, 1);
+		// ANGLES
+		CheckAngle(coordinate, localMap);
 		// UNICSITUATIONS
-		/*line = { localMap[4][0],localMap[4][1],localMap[4][2],localMap[4][3],localMap[4][4],localMap[4][5],localMap[4][6],localMap[4][7],localMap[4][8] };
-		CheckLine(line);*/
+		CheckUnic(coordinate, localMap);
 	};
 }

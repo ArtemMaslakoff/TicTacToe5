@@ -31,7 +31,7 @@ namespace Visual
 		{
 			if ((squares[i].GetX() >= 0 + coordinate.GetX()) && (squares[i].GetX() < 40 + coordinate.GetX()) && (squares[i].GetY() >= 0 + coordinate.GetY()) && (squares[i].GetY() < 40 + coordinate.GetY()))
 			{
-				localMap[squares[i].GetX() - coordinate.GetX()][squares[i].GetY() - coordinate.GetY()] = SQ;
+				localMap[(int64_t)(squares[i].GetX() + coordinate.GetX())][(int64_t)(squares[i].GetY() + coordinate.GetY())] = SQ;
 			}
 		}
 		for (int i = 0; i < 40; i++)

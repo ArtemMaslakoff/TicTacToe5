@@ -1,0 +1,14 @@
+﻿  AI.cpp
+C:\Users\Артем\Documents\GitHub\TicTacToe5\Button.h(7,10): fatal  error C1083: Не удается открыть файл включение: SFML/Graphics.hpp: No such file or directory,
+  Button.cpp
+C:\Users\Артем\Documents\GitHub\TicTacToe5\Button.h(7,10): fatal  error C1083: Не удается открыть файл включение: SFML/Graphics.hpp: No such file or directory,
+  Cage.cpp
+  Coordinate.cpp
+  Drawer.cpp
+C:\Users\Артем\Documents\GitHub\TicTacToe5\Button.h(7,10): fatal  error C1083: Не удается открыть файл включение: SFML/Graphics.hpp: No such file or directory,
+  main.cpp
+C:\Users\Артем\Documents\GitHub\TicTacToe5\main.cpp(2,10): fatal  error C1083: Не удается открыть файл включение: SFML/Graphics.hpp: No such file or directory,
+  Player.cpp
+  PlayerController.cpp
+C:\Users\Артем\Documents\GitHub\TicTacToe5\PlayerController.h(1,10): fatal  error C1083: Не удается открыть файл включение: SFML/Graphics.hpp: No such file or directory,
+  TicTacToe5.cpp
