@@ -107,7 +107,8 @@ namespace Logic
 		else if (squares.size() != 0)
 		{
 			num = rand() % squares.size();
-			game.DoStep(squares[num].GetX(), squares[num].GetY());
+			game.DoStep(squares[num].GetX(), squares[num].GetY()); 
+			DeleteTriangle(squares[num]);
 			DeleteSquare(squares[num]);
 			for (int i = 0; i < squares.size(); i++)
 			{

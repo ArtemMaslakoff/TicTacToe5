@@ -1,9 +1,2 @@
-﻿  AI.cpp
-C:\Users\Артем\Documents\GitHub\TicTacToe5\AI.cpp(102,13): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
-  Cage.cpp
-  Drawer.cpp
-  PlayerController.cpp
-  TicTacToe5.cpp
-  main.cpp
-  Создание кода...
+﻿  Drawer.cpp
   tic_tac_toe.vcxproj -> C:\Users\Артем\Documents\GitHub\TicTacToe5\x64\Debug\tic_tac_toe.exe

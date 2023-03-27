@@ -29,14 +29,14 @@ namespace Visual
 		array<array<CageCondition, 40>, 40> localMap = tictactoe.GetMap(coordinate);
 		for (int i = 0; i < squares.size(); i++)
 		{
-			if ((squares[i].GetX() >= 0 + coordinate.GetX()) && (squares[i].GetX() < 40 + coordinate.GetX()) && (squares[i].GetY() >= 0 + coordinate.GetY()) && (squares[i].GetY() < 40 + coordinate.GetY()))
+			if ((squares[i].GetX() >= 0 - coordinate.GetX()) && (squares[i].GetX() < 40 - coordinate.GetX()) && (squares[i].GetY() >= 0 + coordinate.GetY()) && (squares[i].GetY() < 40 + coordinate.GetY()))
 			{
 				localMap[(int64_t)(squares[i].GetX() + coordinate.GetX())][(int64_t)(squares[i].GetY() - coordinate.GetY())] = SQ;
 			}
 		}
 		for (int i = 0; i < triangles.size(); i++)
 		{
-			if ((triangles[i].GetX() >= 0 + coordinate.GetX()) && (triangles[i].GetX() < 40 + coordinate.GetX()) && (triangles[i].GetY() >= 0 + coordinate.GetY()) && (triangles[i].GetY() < 40 + coordinate.GetY()))
+			if ((triangles[i].GetX() >= 0 - coordinate.GetX()) && (triangles[i].GetX() < 40 - coordinate.GetX()) && (triangles[i].GetY() >= 0 + coordinate.GetY()) && (triangles[i].GetY() < 40 + coordinate.GetY()))
 			{
 				localMap[(int64_t)(triangles[i].GetX() + coordinate.GetX())][(int64_t)(triangles[i].GetY() - coordinate.GetY())] = TR;
 			}
