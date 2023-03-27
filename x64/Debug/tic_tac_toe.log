@@ -1,2 +1,4 @@
-﻿  Drawer.cpp
+﻿  Button.cpp
+C:\Users\Артем\Documents\GitHub\TicTacToe5\Button.cpp(64,41): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\Users\Артем\Documents\GitHub\TicTacToe5\Button.cpp(64,30): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
   tic_tac_toe.vcxproj -> C:\Users\Артем\Documents\GitHub\TicTacToe5\x64\Debug\tic_tac_toe.exe

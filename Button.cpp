@@ -60,6 +60,7 @@ namespace Visual
         texture.loadFromFile(file);
         Sprite sprite;
         sprite.setTexture(texture);
+        sprite.setColor(sf::Color(255, 0, 0));
         sprite.setPosition(x * length,y * width);
         window.draw(sprite);
     };
