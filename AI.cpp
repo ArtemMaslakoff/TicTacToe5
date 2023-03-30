@@ -8,6 +8,10 @@ namespace Logic
 
 	AI::~AI() = default;
 
+	vector<Logic::Coordinate> AI::GetRhombs()
+	{
+		return rhombs;
+	};
 	vector<Logic::Coordinate> AI::GetTriangles()
 	{
 		return triangles;
@@ -15,6 +19,32 @@ namespace Logic
 	vector<Logic::Coordinate> AI::GetSquares()
 	{
 		return squares;
+	};
+
+	void AI::AddRhomb(Logic::Coordinate coordinate)
+	{
+		bool ind = true;
+		for (int i = 0; i < rhombs.size(); i++)
+		{
+			if (rhombs[i].GetX() == coordinate.GetX() && rhombs[i].GetY() == coordinate.GetY())
+			{
+				ind = false;
+			}
+		}
+		if (ind)
+		{
+			rhombs.push_back(Coordinate(coordinate.GetX(), coordinate.GetY()));
+		}
+	};
+	void AI::DeleteRhomb(Logic::Coordinate coordinate)
+	{
+		for (int i = 0; i < rhombs.size(); i++)
+		{
+			if (rhombs[i].GetX() == coordinate.GetX() && rhombs[i].GetY() == coordinate.GetY())
+			{
+				rhombs.erase(rhombs.begin() + i);
+			}
+		}
 	};
 
 	void AI::AddSquare(Logic::Coordinate coordinate)
@@ -96,7 +126,7 @@ namespace Logic
 		//game.DoStep(game.GetLastXStep().GetX() + 1, game.GetLastXStep().GetY() + 1);
 		array<array<CageCondition, 9>, 9> localMap = game.GetMapL(game.GetLastXStep());
 		Coordinate coordinate = game.GetLastXStep();
-		Check(localMap, coordinate);
+		Check(localMap, coordinate, game);
 		
 		int num = 0;
 		srand(time(NULL));
@@ -124,7 +154,11 @@ namespace Logic
 		else
 		{
 			game.DoStep(FindFree(game).GetX(), FindFree(game).GetY());
-		}
+		} 
+	};
+	int AI::CheckLineA(array<Logic::CageCondition, 7>& line, Logic::Coordinate& coordinate)
+	{
+		return 1;
 	};
 	void AI::CheckLine(array<CageCondition, 9> &line, Coordinate& coordinate, int x, int y)
 	{
@@ -194,12 +228,31 @@ namespace Logic
 			AddSquare(Coordinate(coordinate.GetX() + (1 * x), coordinate.GetY() + (1 * y)));
 		}
 	}
-	void AI::CheckAngle(Logic::Coordinate& coordinate, array<array<CageCondition, 9>, 9>& localMap)
+	void AI::CheckAngle(Logic::Coordinate& coordinate, array<array<CageCondition, 13>, 13>& localMap)
 	{
-		/*if ()
+		for (int i = 3; i < 10; i++)
 		{
-
-		}*/
+			for (int j = 3; j < 10; j++)
+			{
+				int count = 0;
+				if (localMap[i][j] == FREE)
+				{
+					Coordinate cord(i, j);
+					// HORIZONTAL
+					array<CageCondition, 7> line = { localMap[i-3][j],localMap[i-2][j],localMap[i-1][j],localMap[i][j],localMap[i+1][j],localMap[i+2][j],localMap[i+3][j] };
+					count += CheckLineA(line, cord);
+					// VERTICAL
+					line = { localMap[i - 3][j],localMap[i - 2][j],localMap[i - 1][j],localMap[i][j],localMap[i + 1][j],localMap[i + 2][j],localMap[i + 3][j] };
+					count += CheckLineA(line, cord);
+					// MAINDIAGONAL
+					line = { localMap[i - 3][j],localMap[i - 2][j],localMap[i - 1][j],localMap[i][j],localMap[i + 1][j],localMap[i + 2][j],localMap[i + 3][j] };
+					count += CheckLineA(line, cord);
+					// NOTMAINDIAGONAL
+					line = { localMap[i - 3][j],localMap[i - 2][j],localMap[i - 1][j],localMap[i][j],localMap[i + 1][j],localMap[i + 2][j],localMap[i + 3][j] };
+					count += CheckLineA(line, cord);
+				}
+			}
+		}
 	};
 	void AI::CheckUnic(Logic::Coordinate& coordinate, array<array<CageCondition, 9>, 9>& localMap)
 	{
@@ -237,7 +290,7 @@ namespace Logic
 			AddSquare(Coordinate(coordinate.GetX() - 1, coordinate.GetY()));
 		}
 	};
-	void AI::Check(array<array<CageCondition, 9>, 9> &localMap, Coordinate &coordinate)
+	void AI::Check(array<array<CageCondition, 9>, 9> &localMap, Coordinate &coordinate, TicTacToe &game)
 	{ 
 		// HORIZONTAL
 		array<CageCondition, 9> line = { localMap[4][0],localMap[4][1],localMap[4][2],localMap[4][3],localMap[4][4],localMap[4][5],localMap[4][6],localMap[4][7],localMap[4][8] };
@@ -252,8 +305,9 @@ namespace Logic
 		line = { localMap[8][0],localMap[7][1],localMap[6][2],localMap[5][3],localMap[4][4],localMap[3][5],localMap[2][6],localMap[1][7],localMap[0][8] };
 		CheckLine(line, coordinate, -1, 1);
 		// ANGLES
-		CheckAngle(coordinate, localMap);
-		// UNICSITUATIONS
 		CheckUnic(coordinate, localMap);
+		// ANGLES
+		array<array<CageCondition, 13>, 13> map = game.GetMapB(game.GetLastXStep());
+		CheckAngle(coordinate, map);
 	};
 }

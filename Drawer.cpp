@@ -24,7 +24,7 @@ namespace Visual
 		return coordinate;
 	};
 
-	void Drawer::Draw(RenderWindow& window, TicTacToe& tictactoe, vector<Logic::Coordinate> squares, vector<Logic::Coordinate> triangles)
+	void Drawer::Draw(RenderWindow& window, TicTacToe& tictactoe, vector<Logic::Coordinate> squares, vector<Logic::Coordinate> triangles, vector<Logic::Coordinate> rhombs)
 	{
 		array<array<CageCondition, 40>, 40> localMap = tictactoe.GetMap(coordinate);
 		for (int i = 0; i < squares.size(); i++)
@@ -60,6 +60,10 @@ namespace Visual
 				else if (localMap[i][j] == TR)
 				{
 					localTable[i][j].Draw(window, "CageTR.png");
+				}
+				else if (localMap[i][j] == RB)
+				{
+					localTable[i][j].Draw(window, "CageRB.png");
 				}
 				else
 				{

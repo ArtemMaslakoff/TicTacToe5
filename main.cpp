@@ -34,7 +34,7 @@ int main()
 
         playerController.Check(window, event, game, drawer, ai);
         drawer.Check();
-        drawer.Draw(window, game, ai.GetSquares(), ai.GetTriangles());
+        drawer.Draw(window, game, ai.GetSquares(), ai.GetTriangles(), ai.GetTriangles());
         window.display();
     }
 

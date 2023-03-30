@@ -22,8 +22,12 @@ namespace Logic
 
 		~AI();
 
-		std::vector<Logic::Coordinate> GetTriangles();
+		std::vector<Logic::Coordinate> GetRhombs();
 		std::vector<Logic::Coordinate> GetSquares();
+		std::vector<Logic::Coordinate> GetTriangles();
+
+		void AddRhomb(Logic::Coordinate coordinate);
+		void DeleteRhomb(Logic::Coordinate coordinate);
 
 		void AddSquare(Logic::Coordinate coordinate);
 		void DeleteSquare(Logic::Coordinate coordinate);
@@ -36,10 +40,11 @@ namespace Logic
 		Logic::Coordinate FindFree(Logic::TicTacToe& game);
 
 		void DoStep(Logic::TicTacToe& game);
+		int CheckLineA(std::array<Logic::CageCondition, 7>& line, Logic::Coordinate& coordinate);
 		void CheckLine(std::array<Logic::CageCondition, 9>& line, Logic::Coordinate& coordinate, int x, int y);
-		void CheckAngle(Logic::Coordinate& coordinate, std::array<std::array<Logic::CageCondition, 9>, 9>& localMap);
+		void CheckAngle(Logic::Coordinate& coordinate, std::array<std::array<Logic::CageCondition, 13>, 13>& localMap);
 		void CheckUnic(Logic::Coordinate& coordinate, std::array<std::array<Logic::CageCondition, 9>, 9>& localMap);
-		void Check(std::array<std::array<Logic::CageCondition, 9>, 9> &localMap, Coordinate& coordinate);
+		void Check(std::array<std::array<Logic::CageCondition, 9>, 9> &localMap, Coordinate& coordinate, Logic::TicTacToe& game);
 	};
 }
 

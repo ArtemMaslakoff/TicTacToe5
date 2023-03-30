@@ -34,6 +34,7 @@ namespace Logic
 		CageCondition FindCage(int Ix, int Iy);
 		std::array<std::array<CageCondition, 40>, 40> GetMap(Coordinate Icoordinate);
 		std::array<std::array<CageCondition, 9>, 9> GetMapL(Coordinate Icoordinate);
+		std::array<std::array<CageCondition, 13>, 13> GetMapB(Coordinate Icoordinate);
 	};
 }
 

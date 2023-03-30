@@ -3,3 +3,4 @@ C:\Users\Артем\Desktop\C++\ООП\tic_tac_toe\x64\Debug\tic_tac_toe.exe
 C:\Users\Артем\Desktop\C++\ООП\tic_tac_toe5\x64\Debug\tic_tac_toe.exe
 C:\Users\masla\OneDrive\Документы\GitHub\TicTacToe5\x64\Debug\tic_tac_toe.exe
 C:\Users\Артем\Documents\GitHub\TicTacToe5\x64\Debug\tic_tac_toe.exe
+E:\GitHub\TicTacToe5\x64\Debug\tic_tac_toe.exe

@@ -86,4 +86,16 @@ namespace Logic
 		}
 		return result;
 	};
+	array<array<CageCondition, 13>, 13> TicTacToe::GetMapB(Coordinate Icoordinate)
+	{
+		array<array<CageCondition, 13>, 13> result{};
+		for (int i = 0; i < 13; i++)
+		{
+			for (int j = 0; j < 13; j++)
+			{
+				result[i][j] = FindCage(Icoordinate.GetX() - 6 + i, Icoordinate.GetY() - 6 + j);
+			}
+		}
+		return result;
+	};
 } 

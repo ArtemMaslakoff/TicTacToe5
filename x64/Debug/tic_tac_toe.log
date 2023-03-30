@@ -1,4 +1,6 @@
-﻿  Button.cpp
-C:\Users\Артем\Documents\GitHub\TicTacToe5\Button.cpp(64,41): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-C:\Users\Артем\Documents\GitHub\TicTacToe5\Button.cpp(64,30): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-  tic_tac_toe.vcxproj -> C:\Users\Артем\Documents\GitHub\TicTacToe5\x64\Debug\tic_tac_toe.exe
+﻿  AI.cpp
+E:\GitHub\TicTacToe5\AI.cpp(132,13): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+  main.cpp
+  PlayerController.cpp
+  Создание кода...
+  tic_tac_toe.vcxproj -> E:\GitHub\TicTacToe5\x64\Debug\tic_tac_toe.exe
